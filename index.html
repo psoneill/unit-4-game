@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">   
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-2 text-center bg-dark header">
+                <h1 class="text-light">Star Wars RPG</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="jumbotron col-12 p-2 text-center header">
+                <div class="row justify-content-center">
+                    <div class="col-2 obiWan">
+                        <div class="row justify-content-center">
+                            <img id="obiWan" src="assets/images/obiWan.jpg" alt="Obi-Wan Kenobi" class="characterSelect">
+                        </div>
+                        <div class="row justify-content-center">
+                            <span>200</span>
+                        </div>
+                    </div>
+                    <div class="col-2 lukeSkywalker">
+                        <div class="row justify-content-center">
+                            <img id="lukeSkywalker" src="assets/images/lukeSykwalker.jpg" alt="Luke Skywalker" class="characterSelect"> 
+                        </div>
+                        <div class="row justify-content-center">
+                            <span>240</span>
+                        </div>
+                    </div>
+                    <div class="col-2 darthSidious">
+                        <div class="row justify-content-center">
+                            <img id="darthSidious" src="assets/images/darthSidious.jpg" alt="Darth Sidious" class="characterSelect">
+                        </div>
+                        <div class="row justify-content-center">
+                            <span>280</span>
+                        </div>
+                    </div>
+                    <div class="col-2 darthMaul">
+                        <div class="row justify-content-center">
+                            <img id="darthMaul" src="assets/images/darthMaul.jpg" alt="Darth Maul" class="characterSelect">
+                        </div>
+                        <div class="row justify-content-center">
+                            <span>300</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-4">
+                <div id="userCharacter" class="card mr-5 ml-5">
+                    <img id="userCharacterImage" class="card-img-top" src="assets/images/placeholder.png" alt="Selected Character">
+                    <div class="card-body text-center">
+                        <h5 id="characterName" class="card-title">Character Name</h5>
+                        <p class="card-text">
+                            HP: <span id="characterHP"></span>
+                            <br>
+                            ATK: <span id="characterATK"></span>
+                        </p>
+                        <a id="characterSelect" class="btn btn-primary">Select</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"> 
+                <button id="btnAttack" type="button" class="btn btn-danger btn-lg">Attack</button>
+            </div>
+            <div class="col-4"> 
+                <div id="enemyCharacter" class="card mr-5 ml-5">
+                    <img id="enemyCharacterImage" class="card-img-top" src="assets/images/placeholder.png" alt="Enemy Character">
+                    <div class="card-body text-center">
+                        <h5 id="enemyCharacterName" class="card-title">Enemy Character Name</h5>
+                        <p class="card-text">
+                            HP: <span id="enemyHP"></span>
+                            <br>
+                            ATK: <span id="enemyATK"></span>
+                        </p>
+                        <a id="enemySelect" class="btn btn-primary">Select</a>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>
