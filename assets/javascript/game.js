@@ -29,6 +29,7 @@ $(function() {
 //sets character selected to false at beginning
 var characterSelected = false;
 var enemySelected = false;
+var attackFinished = true;
 var selectedChar = "";
 var enemyChar = "";
 
@@ -70,6 +71,7 @@ $("#characterSelect").on("click", function() {
 
 $("#enemySelect").on("click", function() {
     if($("#enemyCharacterImage").attr("src") !== "assets/images/placeholder.png") {
+        attackFinished = true;
         $("#enemyCharacter").addClass("enemyCharacterSelected");
         $("."+enemyChar.id).hide();
         $("#enemySelect").hide();
@@ -79,25 +81,60 @@ $("#enemySelect").on("click", function() {
 })
 
 $("#btnAttack").on("click", function(){
-    enemyChar.health -= selectedChar.attack;
-    $("#enemyHP").text(enemyChar.health);
+    if(enemySelected) {
+        if(attackFinished) {
+            attackFinished = false;
+            animateUserAttack();
 
-    if(enemyChar.health > 0) {
-        selectedChar.health -= enemyChar.attack;
-        $("#characterHP").text(selectedChar.health);
+            enemyChar.health -= selectedChar.attack;
+            $("#enemyHP").text(enemyChar.health);
 
-        selectedChar.attack += 8;
-        $("#characterATK").text(selectedChar.attack);
-    } else {
-        $("#enemyCharacterImage").attr("src","assets/images/placeholder.png");
-        $("#enemyCharacterName").text("Enemy Name");
-        $("#enemyHP").text("");
-        $("#enemyATK").text("");
-        enemyChar = "";
-        enemySelected = false;
-        $("#enemySelect").show();
-        $("#enemyCharacter").removeClass("enemyCharacterSelected");
-    }
+            if(enemyChar.health > 0) {
+                setTimeout(function (){
+                    animateEnemyAttack();
+
+                    selectedChar.health -= enemyChar.attack;
+                    $("#characterHP").text(selectedChar.health);
+
+                    selectedChar.attack += 8;
+                    $("#characterATK").text(selectedChar.attack);
+                    attackFinished = true;
+                },800);
+            } else {
+                $("#enemyCharacterImage").attr("src","assets/images/placeholder.png");
+                $("#enemyCharacterName").text("Enemy Name");
+                $("#enemyHP").text("");
+                $("#enemyATK").text("");
+                enemyChar = "";
+                enemySelected = false;
+                $("#enemySelect").show();
+                $("#enemyCharacter").removeClass("enemyCharacterSelected");
+            }
+        }
+    }   
 })
 
+function animateUserAttack() {
+    var userCharacterCard = $("#userCharacter");
+    var enemyCharacterCard = $("#enemyCharacter");
+    userCharacterCard.animate({ left: "+=500px" }, 150);
+    userCharacterCard.animate({ left: "-=500px" }, 150);
+    setTimeout(function() {
+        enemyCharacterCard.animate({ left: "+=20px" }, 50);
+        enemyCharacterCard.animate({ left: "-=40px" }, 50);
+        enemyCharacterCard.animate({ left: "+=20px" }, 50);
+    },350);
+}
+
+function animateEnemyAttack() {
+    var userCharacterCard = $("#userCharacter");
+    var enemyCharacterCard = $("#enemyCharacter");
+    enemyCharacterCard.animate({ left: "-=500px" }, 150);
+    enemyCharacterCard.animate({ left: "+=500px" }, 150);
+    setTimeout(function() {
+        userCharacterCard.animate({ left: "-=20px" }, 50);
+        userCharacterCard.animate({ left: "+=40px" }, 50);
+        userCharacterCard.animate({ left: "-=20px" }, 50);
+    },350);
+}
 });

@@ -22,3 +22,7 @@
 .enemyCharacterSelected {
     border:5px solid rgb(235, 3, 3);
 } 
+
+#userCharacter {
+    z-index:10;
+}
