@@ -2,26 +2,30 @@ var characters = {
     obiWan: {
         id:"obiWan",
         name:"Obi-Wan Kenobi",
-        health:200,
-        attack:18
+        health:50,
+        attack:15,
+        originalAttack:15
     },
     lukeSkywalker: {
         id:"lukeSkywalker",
         name:"Luke Skywalker",
-        health:240,
-        attack:16
+        health:60,
+        attack:13,
+        originalAttack:13
     },
     darthSidious: {
         id:"darthSidious",
         name:"Darth Sidious",
-        health:280,
-        attack:14
+        health:80,
+        attack:14,
+        originalAttack:14
     },
     darthMaul: {
         id:"darthMaul",
         name:"Darth Maul",
-        health:300,
-        attack:12
+        health:100,
+        attack:12,
+        originalAttack:12
     }
 }
 
@@ -30,6 +34,7 @@ $(function() {
 var characterSelected = false;
 var enemySelected = false;
 var attackFinished = true;
+var enemyDead = false;
 var selectedChar = "";
 var enemyChar = "";
 
@@ -84,32 +89,43 @@ $("#btnAttack").on("click", function(){
     if(enemySelected) {
         if(attackFinished) {
             attackFinished = false;
+            enemyChar.health -= selectedChar.attack;
             animateUserAttack();
 
-            enemyChar.health -= selectedChar.attack;
             $("#enemyHP").text(enemyChar.health);
 
-            if(enemyChar.health > 0) {
-                setTimeout(function (){
-                    animateEnemyAttack();
-
+            setTimeout(function (){
+                if(enemyChar.health > 0) {                      
                     selectedChar.health -= enemyChar.attack;
+                    animateEnemyAttack();
                     $("#characterHP").text(selectedChar.health);
 
-                    selectedChar.attack += 8;
-                    $("#characterATK").text(selectedChar.attack);
-                    attackFinished = true;
-                },800);
-            } else {
-                $("#enemyCharacterImage").attr("src","assets/images/placeholder.png");
-                $("#enemyCharacterName").text("Enemy Name");
-                $("#enemyHP").text("");
-                $("#enemyATK").text("");
-                enemyChar = "";
-                enemySelected = false;
-                $("#enemySelect").show();
-                $("#enemyCharacter").removeClass("enemyCharacterSelected");
-            }
+                    if(selectedChar.health <= 0) {
+                        setTimeout(function(){
+                            alert("Game Over!");
+                            window.location.reload();
+                        },1000)
+                    }
+                } else {
+                    $("#enemyCharacterImage").attr("src","assets/images/placeholder.png");
+                    $("#enemyCharacterName").text("Enemy Name");
+                    $("#enemyHP,#enemyATK").text("");
+                    enemyChar = "";
+                    enemySelected = false;
+                    $("#enemySelect").show();
+                    $("#enemyCharacter").removeClass("enemyCharacterSelected");
+                    $("#enemyCharacter").removeClass("deadCharacter");
+                    $("#btnAttack").hide();
+
+                    if ( $("div.character:visible").length === 0) {
+                        $("#characterSelectScreen").html("<h1>You Win!!!!</h1>")
+                    }
+                }
+
+                selectedChar.attack += selectedChar.originalAttack;
+                $("#characterATK").text(selectedChar.attack);
+                attackFinished = true;
+            },800);
         }
     }   
 })
@@ -118,11 +134,14 @@ function animateUserAttack() {
     var userCharacterCard = $("#userCharacter");
     var enemyCharacterCard = $("#enemyCharacter");
     userCharacterCard.animate({ left: "+=500px" }, 150);
+    if(enemyChar.health <= 0) {
+        enemyCharacterCard.addClass("deadCharacter");
+    }
     userCharacterCard.animate({ left: "-=500px" }, 150);
     setTimeout(function() {
         enemyCharacterCard.animate({ left: "+=20px" }, 50);
         enemyCharacterCard.animate({ left: "-=40px" }, 50);
-        enemyCharacterCard.animate({ left: "+=20px" }, 50);
+        enemyCharacterCard.animate({ left: "+=20px" }, 50);  
     },350);
 }
 
@@ -130,6 +149,9 @@ function animateEnemyAttack() {
     var userCharacterCard = $("#userCharacter");
     var enemyCharacterCard = $("#enemyCharacter");
     enemyCharacterCard.animate({ left: "-=500px" }, 150);
+    if(selectedChar.health <= 0) {
+        userCharacterCard.addClass("deadCharacter");
+    }
     enemyCharacterCard.animate({ left: "+=500px" }, 150);
     setTimeout(function() {
         userCharacterCard.animate({ left: "-=20px" }, 50);
