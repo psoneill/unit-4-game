@@ -1,10 +1,14 @@
+body {
+    background-image: url("../images/cubes.png")
+}
+
 .header {
     border-bottom: 5px solid #0153a0;
 }
 
-.characterSelect {
-    width:200px;
+.characterSelectMenu {
     border: 5px solid transparent;
+    margin: 0px 5px 0px 5px;
 }
 
 .characterHover {

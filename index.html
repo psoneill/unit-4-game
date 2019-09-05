@@ -20,31 +20,31 @@
                 <div id="characterSelectScreen" class="row justify-content-center">
                     <div class="col-2 character obiWan">
                         <div class="row justify-content-center">
-                            <img id="obiWan" src="assets/images/obiWan.jpg" alt="Obi-Wan Kenobi" class="characterSelect">
+                            <img id="obiWan" src="assets/images/obiWan.jpg" alt="Obi-Wan Kenobi" class="characterSelectMenu img-fluid">
                         </div>
                         <div class="row justify-content-center">
-                            <span>50</span>
+                            <span>170</span>
                         </div>
                     </div>
                     <div class="col-2 character lukeSkywalker">
                         <div class="row justify-content-center">
-                            <img id="lukeSkywalker" src="assets/images/lukeSykwalker.jpg" alt="Luke Skywalker" class="characterSelect"> 
+                            <img id="lukeSkywalker" src="assets/images/lukeSykwalker.jpg" alt="Luke Skywalker" class="characterSelectMenu img-fluid"> 
                         </div>
                         <div class="row justify-content-center">
-                            <span>60</span>
+                            <span>150</span>
                         </div>
                     </div>
                     <div class="col-2 character darthSidious">
                         <div class="row justify-content-center">
-                            <img id="darthSidious" src="assets/images/darthSidious.jpg" alt="Darth Sidious" class="characterSelect">
+                            <img id="darthSidious" src="assets/images/darthSidious.jpg" alt="Darth Sidious" class="characterSelectMenu img-fluid">
                         </div>
                         <div class="row justify-content-center">
-                            <span>80</span>
+                            <span>130</span>
                         </div>
                     </div>
                     <div class="col-2 character darthMaul">
                         <div class="row justify-content-center">
-                            <img id="darthMaul" src="assets/images/darthMaul.jpg" alt="Darth Maul" class="characterSelect">
+                            <img id="darthMaul" src="assets/images/darthMaul.jpg" alt="Darth Maul" class="characterSelectMenu img-fluid">
                         </div>
                         <div class="row justify-content-center">
                             <span>100</span>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center">
             <div class="col-4">
                 <div id="userCharacter" class="card mr-5 ml-5">
                     <img id="userCharacterImage" class="card-img-top" src="assets/images/placeholder.png" alt="Selected Character">
@@ -64,14 +64,14 @@
                             <br>
                             ATK: <span id="characterATK"></span>
                         </p>
-                        <a id="characterSelect" class="btn btn-primary">Select</a>
+                        <a id="characterSelectBtn" class="btn btn-primary">Select</a>
                     </div>
                 </div>
             </div>
-            <div class="col-1"> 
+            <div class="col-1 align-self-center enemySide"> 
                 <button id="btnAttack" type="button" class="btn btn-danger btn-lg">Attack</button>
             </div>
-            <div class="col-4"> 
+            <div class="col-4 enemySide"> 
                 <div id="enemyCharacter" class="card mr-5 ml-5">
                     <img id="enemyCharacterImage" class="card-img-top" src="assets/images/placeholder.png" alt="Enemy Character">
                     <div class="card-body text-center">
@@ -81,7 +81,7 @@
                             <br>
                             ATK: <span id="enemyATK"></span>
                         </p>
-                        <a id="enemySelect" class="btn btn-primary">Select</a>
+                        <a id="enemySelectBtn" class="btn btn-primary">Select</a>
                     </div>
                 </div>   
             </div>
